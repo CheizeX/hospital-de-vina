@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import RobotAvatar from '../../../assets/robot.svg';
+import RobotAvatar from '../../../assets/vina/logo.png';
 import UserSVG from '../../../assets/user.svg';
 import CollapseButton from '../../../assets/chevron-square-down.svg';
 import { webchatProps } from '../../WebChat/Webchat';

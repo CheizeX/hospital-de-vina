@@ -1,58 +1,124 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import axios from 'axios';
+// import axios from 'axios';
+// import { Link } from 'react-router-dom';
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
-import Swal from 'sweetalert2';
-import { SpinnerCircularFixed } from 'spinners-react';
-import { FaFileDownload, FaWindowClose } from 'react-icons/fa';
+import { ReactSVG } from 'react-svg';
+// import Swal from 'sweetalert2';
+// import { SpinnerCircularFixed } from 'spinners-react';
+import {
+  // FaFileDownload,
+  FaWindowClose,
+} from 'react-icons/fa';
 import { CgMaximizeAlt } from 'react-icons/cg';
-import RobotAvatar from '../../../assets/robot.svg';
-import UserSVG from '../../../assets/user.svg';
+// import UserSVG from '../../../assets/user.svg';
+// import { addAbortSignal } from 'stream';
+import { SpinnerRoundFilled } from 'spinners-react';
+import RobotAvatar from '../../../assets/vina/logo.png';
 import { webchatProps } from '../../WebChat/Webchat';
+import { Message } from '../../shared';
+import { initialMessage, suggestionsObj } from '../../extra';
 
-export const ChatBox: FC<webchatProps> = function ({ messages, agentName }) {
+export const ChatBox: FC<webchatProps> = function ({
+  messages,
+  //  agentName
+}) {
   const dialogueBoxRef = useRef<HTMLDivElement>(null);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [maximizedFile, setMaximizedFile] = useState('');
+
+  const [loadingMessage, setLoadingMessage] = useState(false);
+  const [lastTime, setLastTime] = useState('');
+  // const [activeSelection, setAvtiveSelection] = useState('');
+  const [suggestions, setSuggestions] = useState(suggestionsObj);
+  const [automatedMessages, setAutomatedMessages] =
+    useState<Message[]>(initialMessage);
 
   const scrollToBottom = useCallback(() => {
     dialogueBoxRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [dialogueBoxRef]);
 
-  const handleDownloadFile = async (file: string, chatId: string) => {
-    try {
-      setLoading(true);
-      const response = await axios({
-        url: `${processEnv.restUrl}/webchat/file/${chatId}/${file}`,
-        method: 'get',
-        responseType: 'blob',
-      });
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', file);
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    } catch (error) {
-      Swal.fire({
-        title:
-          'Estamos experimentando inconvenientes técnicos para descargar el archivo.',
-        confirmButtonText: 'OK',
-        confirmButtonColor: processEnv.mainColor,
-        customClass: {
-          popup: 'animated animate__fadeInDown',
+  const handleAutomatedMessages = (suggestion: any) => {
+    // eliminar la suggestions que su nombre coincida con activeSelection:
+    const currentTime = new Date();
+    localStorage.setItem('lastTime', JSON.stringify(currentTime.getTime()));
+    // setAvtiveSelection(suggestion.name);
+    setSuggestions(
+      suggestionsObj.filter(
+        (suggestionItem: any) => suggestionItem.name !== suggestion.name,
+      ),
+    );
+    setAutomatedMessages([
+      ...automatedMessages,
+      {
+        _id: suggestion.name,
+        contentType: 'TEXT',
+        from: 'USER',
+        content: suggestion.name,
+      },
+    ]);
+    // esperar 1 segundo antes de enviar el siguiente mensaje
+    setLoadingMessage(true);
+    setTimeout(() => {
+      setAutomatedMessages([
+        ...automatedMessages,
+        {
+          _id: suggestion.name,
+          contentType: 'TEXT',
+          from: 'USER',
+          content: suggestion.name,
+          icon: suggestion.icon,
         },
-      });
-    }
-    setLoading(false);
+        ...suggestion.options.map((option: any) => ({
+          _id: option.text,
+          contentType: 'TEXT',
+          from: 'AGENT',
+          content: option.text,
+          icon: option.icon,
+          link: option.link,
+        })),
+      ]);
+      // setLastTime(new Date());
+      setLoadingMessage(false);
+      scrollToBottom();
+    }, 2000);
+    setLastTime(localStorage.getItem('lastTime'));
   };
 
-  useEffect(scrollToBottom, [scrollToBottom, messages]);
+  // const handleDownloadFile = async (file: string, chatId: string) => {
+  //   try {
+  //     setLoading(true);
+  //     const response = await axios({
+  //       url: `${processEnv.restUrl}/webchat/file/${chatId}/${file}`,
+  //       method: 'get',
+  //       responseType: 'blob',
+  //     });
+  //     const url = window.URL.createObjectURL(new Blob([response.data]));
+  //     const link = document.createElement('a');
+  //     link.href = url;
+  //     link.setAttribute('download', file);
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     link.remove();
+  //   } catch (error) {
+  //     Swal.fire({
+  //       title:
+  //         'Estamos experimentando inconvenientes técnicos para descargar el archivo.',
+  //       confirmButtonText: 'OK',
+  //       confirmButtonColor: processEnv.mainColor,
+  //       customClass: {
+  //         popup: 'animated animate__fadeInDown',
+  //       },
+  //     });
+  //   }
+  //   setLoading(false);
+  // };
+
+  useEffect(scrollToBottom, [scrollToBottom, messages, automatedMessages]);
 
   return (
     <div className="chat-box__ewc-class">
       <div className="dialogues-box__ewc-class">
-        <div>
+        {/* <div>
           <div className="bot-dialogue__ewc-class">
             <div className="bot-image-container__ewc-class">
               <img
@@ -63,10 +129,8 @@ export const ChatBox: FC<webchatProps> = function ({ messages, agentName }) {
             </div>
             <div className="bot-text-container__ewc-class">
               <p className="bot-text__ewc-class">
-                Hola {sessionStorage.getItem('webchat_elipse_name')}. Estamos
-                para leer tus preguntas y resolver tus dudas. Realiza tu
-                consulta y cuando un agente se encuentre disponible te
-                responderá a la brevedad. Muchas gracias.
+                Hola {sessionStorage.getItem('webchat_elipse_name')}, estoy aquí
+                para ayudarte!. Elige alguna de las siguientes opciones:
               </p>
             </div>
           </div>
@@ -78,19 +142,28 @@ export const ChatBox: FC<webchatProps> = function ({ messages, agentName }) {
               hour12: true,
             })}
           </div>
-        </div>
-        {messages &&
-          messages?.map((message) =>
+        </div> */}
+        {automatedMessages &&
+          automatedMessages.map((message, index) =>
             message.from === 'AGENT' ? (
-              <div key={message._id}>
+              <div key={index.toString()}>
                 <div className="bot-dialogue__ewc-class">
                   <div className="bot-image-container__ewc-class">
-                    <img
-                      className="bot-image__ewc-class"
-                      src={agentName === '' ? RobotAvatar : UserSVG}
-                      alt=""
-                    />
+                    {message.icon ? (
+                      <ReactSVG
+                        className="bot-svg-and-icon__ewc-class"
+                        src={message.icon}
+                      />
+                    ) : (
+                      <img
+                        className="bot-image__ewc-class"
+                        // src={agentName === '' ? RobotAvatar : UserSVG}
+                        src={RobotAvatar}
+                        alt=""
+                      />
+                    )}
                   </div>
+
                   <div
                     className={
                       message.contentType === 'ATTACHMENT'
@@ -154,13 +227,14 @@ export const ChatBox: FC<webchatProps> = function ({ messages, agentName }) {
                             </button>
                             <button
                               type="button"
-                              onClick={() =>
-                                handleDownloadFile(
-                                  message.content.split('/')[3],
-                                  sessionStorage?.getItem('chatId'),
-                                )
-                              }>
-                              {loading ? (
+                              // onClick={() =>
+                              //   handleDownloadFile(
+                              //     message.content.split('/')[3],
+                              //     sessionStorage?.getItem('chatId'),
+                              //   )
+                              // }
+                            >
+                              {/* {loading ? (
                                 <SpinnerCircularFixed
                                   size={20}
                                   thickness={250}
@@ -168,14 +242,18 @@ export const ChatBox: FC<webchatProps> = function ({ messages, agentName }) {
                                 />
                               ) : (
                                 <FaFileDownload className="bot-file-download__ewc-class" />
-                              )}
+                              )} */}
                             </button>
                           </div>
                         )}
-
-                      {message.contentType === 'TEXT' && message.content}
+                      {message.contentType === 'TEXT' && message.link ? (
+                        <a href={message.link} target="_blank" rel="noreferrer">
+                          {message.content}
+                        </a>
+                      ) : (
+                        message.content
+                      )}
                     </span>
-
                     {maximizedFile === message._id && (
                       <article className="maximized-file-modal__ewc-class">
                         <button
@@ -229,17 +307,17 @@ export const ChatBox: FC<webchatProps> = function ({ messages, agentName }) {
                     )}
                   </div>
                 </div>
-                <div className="bot-time__ewc-class">
+                {/* <div className="bot-time__ewc-class">
                   {' '}
                   {new Date(message.createdAt).toLocaleTimeString('en-US', {
                     hour: 'numeric',
                     minute: 'numeric',
                     hour12: true,
                   })}
-                </div>
+                </div> */}
               </div>
             ) : (
-              <div key={message._id}>
+              <div key={index.toString()}>
                 <div className="user-dialogue__ewc-class">
                   {maximizedFile === message._id && (
                     <article className="maximized-file-modal__ewc-class">
@@ -291,6 +369,7 @@ export const ChatBox: FC<webchatProps> = function ({ messages, agentName }) {
                       )}
                     </article>
                   )}
+
                   <div
                     className={
                       message.contentType === 'ATTACHMENT'
@@ -361,16 +440,58 @@ export const ChatBox: FC<webchatProps> = function ({ messages, agentName }) {
                       )}
                   </div>
                 </div>
-                <div className="user-time__ewc-class">
+                {/* <div className="user-time__ewc-class">
                   {new Date(message.createdAt).toLocaleTimeString('en-US', {
                     hour: 'numeric',
                     minute: 'numeric',
                     hour12: true,
                   })}
-                </div>
+                </div> */}
               </div>
             ),
           )}
+        {lastTime && !loadingMessage && (
+          <div className="auto-time__ewc-class">
+            {new Date(
+              JSON.parse(localStorage.getItem('lastTime')),
+            ).toLocaleTimeString('en-US', {
+              hour: 'numeric',
+              minute: 'numeric',
+              hour12: true,
+            })}
+          </div>
+        )}
+
+        {!loadingMessage ? (
+          <div className="automatized-text-container__ewc-class">
+            {suggestions.map((suggestion, index) => (
+              <button
+                className="automatized-text__ewc-class"
+                key={index.toString()}
+                type="button"
+                onClick={() => {
+                  handleAutomatedMessages(suggestion);
+                }}>
+                {suggestion.icon && (
+                  <ReactSVG
+                    classNmae="svg-logo_ewc-class"
+                    src={suggestion.icon}
+                  />
+                )}
+                {suggestion.name}
+              </button>
+            ))}
+          </div>
+        ) : (
+          <div className="spinner-before-suggestions__ewc-class">
+            <SpinnerRoundFilled
+              size={25}
+              thickness={120}
+              speed={180}
+              color="#2F55B9"
+            />
+          </div>
+        )}
         <div ref={dialogueBoxRef} />
       </div>
     </div>

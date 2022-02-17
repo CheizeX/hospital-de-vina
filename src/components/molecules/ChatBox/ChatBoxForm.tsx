@@ -4,11 +4,11 @@ import { webchatProps } from '../../WebChat/Webchat';
 
 export const ChatBoxForm: FC<webchatProps> = function ({
   name,
-  outOfHour,
+  // outOfHour,
   email,
   setSetingNameAndEmail,
-  validateBusinessTime,
-  setOutOfHourWarning,
+  // validateBusinessTime,
+  // setOutOfHourWarning,
   setName,
   setEmail,
 }) {
@@ -42,12 +42,12 @@ export const ChatBoxForm: FC<webchatProps> = function ({
   }, [email, name, validationSchema, setSetingNameAndEmail]);
 
   const handleSendButton = () => {
-    validateBusinessTime();
-    if (outOfHour) {
-      setOutOfHourWarning(true);
-      return;
-    }
     handleSetNameAndEmailOnStorage();
+    // validateBusinessTime();
+    // if (outOfHour) {
+    //   setOutOfHourWarning(true);
+    //   return;
+    // }
   };
 
   const handleLocaleStorageName = (e: React.ChangeEvent<HTMLInputElement>) => {
