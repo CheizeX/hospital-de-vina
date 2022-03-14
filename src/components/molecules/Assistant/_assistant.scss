@@ -8,12 +8,12 @@
   padding-left: 1rem;
   padding-top: 1rem;
   .avatar__ewc-class {
-    background-image: linear-gradient(140deg, $main 0%, $secondary 150%);
+    background: white;
     border-radius: 50%;
     width: 3.125rem;
     height: 3.125rem;
     box-shadow: 0rem 0.1875rem 0.3125rem 0.125rem rgba(0, 0, 0, 0.382);
-    border: 0.125rem solid $gray-9;
+    // border: 0.125rem solid $gray-7;
   }
   .titles-container__ewc-class {
     margin-left: 0.7rem;

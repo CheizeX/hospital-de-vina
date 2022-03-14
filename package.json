@@ -4,8 +4,8 @@
   "main": "index.tsx",
   "license": "MIT",
   "scripts": {
-    "start": "webpack serve --port 3000 --mode development --open --hot --env mainColor=#2F55B9 --env animation=yes --env secondaryColor=#22778B --env name='Hospital Clínico' --env description='Asistente Virtual' --env avatar=../../assets/user.svg --env socketUrl=https://ws-ailalia.ngrok.io --env restUrl=https://rest-ailalia.ngrok.io/rest/v1/api --env companyId=61f713aee1822f4d387ae7f6",
-    "build": "webpack --mode production --env mainColor=#2F55B9 --env animation=yes --env secondaryColor=#22778B --env name='Hospital Clínico' --env description='Asistente Virtual' --env avatar=assets/user.svg --env socketUrl=https://ws-ailalia.ngrok.io --env restUrl=https://rest-ailalia.ngrok.io/rest/v1/api --env companyId=61f713aee1822f4d387ae7f6"
+    "start": "webpack serve --port 3000 --mode development --open --hot --env mainColor=#0061EE --env animation=yes --env secondaryColor=#00C8C4 --env name='Asistente HCVM' --env description='Asistente Virtual' --env avatar=../../assets/user.svg --env socketUrl=https://ws-ailalia.ngrok.io --env restUrl=https://rest-ailalia.ngrok.io/rest/v1/api --env companyId=61f713aee1822f4d387ae7f6",
+    "build": "webpack --mode production --env mainColor=#0061EE --env animation=yes --env secondaryColor=#00C8C4 --env name='Asistente HCVM' --env description='Asistente Virtual' --env avatar=assets/user.svg --env socketUrl=https://ws-ailalia.ngrok.io --env restUrl=https://rest-ailalia.ngrok.io/rest/v1/api --env companyId=61f713aee1822f4d387ae7f6"
   },
   "dependencies": {
     "axios": "^0.24.0",

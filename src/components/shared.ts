@@ -91,6 +91,23 @@ export type Chat = {
   feedback?: string;
 };
 
+export interface OptionsSuggestionsProps {
+  icon?: string;
+  link?: string;
+  text?: string;
+}
+export interface SubItemsSuggestionsProps {
+  icon?: string;
+  link?: string;
+  text?: string;
+}
+export interface SuggestionsProps {
+  icon?: string;
+  name?: string;
+  options?: OptionsSuggestionsProps[];
+  subItems?: SubItemsSuggestionsProps[];
+}
+
 // TIME AGO --------------
 const DATE_UNITS = {
   day: 86400,

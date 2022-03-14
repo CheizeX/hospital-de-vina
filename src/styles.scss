@@ -1,5 +1,5 @@
-@import '../src/scss/variables';
 //@import '../src/scss/body';
+@import '../src/scss/variables';
 @import '../src/components/WebChat/webchat';
 @import '../src/components/molecules/UploadFiles/uploadFiles';
 @import '../src/components/molecules/AnimationSvg/animation';
@@ -11,4 +11,5 @@
 @import '../src/components/molecules/InformationMessages/FinishedConversation/finishedConversation';
 @import '../src/components/molecules/InformationMessages/BusyAgents/busyAgents';
 
+// ESTA COMENTADA PORQUE NO ME DEJABA IMPORTARLA, ME TIRABA ERROR EN NETLIFY
 // @import '../src/components/molecules/AutomatedOptions/automatedO';

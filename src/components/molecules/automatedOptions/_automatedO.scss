@@ -1,3 +1,5 @@
+// NO SE ESTÁ USANDO PORQUE TIRA ERROR EN NETLIFY
+
 .automatized-text-container__ewc-class {
   display: flex;
   // border: 1px solid gray;
@@ -45,6 +47,9 @@
         fill: transparent;
         height: 20px;
       }
+    }
+    & svg {
+      margin-right: 10px;
     }
   }
 }
