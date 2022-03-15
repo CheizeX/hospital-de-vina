@@ -21,7 +21,7 @@ export const initialMessage = [
     _id: '0',
     contentType: 'TEXT',
     from: 'AGENT',
-    content: `¡Hola, estoy aquí para ayudarte en los servicios de HCVM!
+    content: `¡Hola, estoy aquí para apoyarte en los servicios de HCVM!
       ¿En qué puedo ayudarte?`,
     icon: '',
     link: '',
@@ -42,11 +42,11 @@ export const suggestionsObjNew = [
             icon: WebSVG,
             link: 'https://agenda.hospitalclinico.cl/',
           },
-          // {
-          //   text: '*****',
-          //   icon: TelefonoSVG,
-          //   link: '',
-          // },
+          {
+            text: `Derivación ejecutiva web (CHATBOT)`,
+            icon: '',
+            link: '',
+          },
         ],
       },
       {
@@ -61,17 +61,17 @@ export const suggestionsObjNew = [
           {
             text: `Si desea hablar directamente con nuestra ejecutiva de telemedicina, háblenos por whatsapp al +56952393656`,
             icon: '',
-            // link: 'tel: +56952393656',
+            link: '',
           },
         ],
       },
       {
-        name: 'Agendamiento horas imagenología',
+        name: 'Agendamiento exámenes',
         icon: ServImagenesSVG,
         options: [
           {
-            text: '*****',
-            icon: WebSVG,
+            text: 'Derivación ejecutiva web (CHATBOT)',
+            icon: '',
             link: ``,
           },
         ],
@@ -83,8 +83,8 @@ export const suggestionsObjNew = [
     icon: PrepExamSVG,
     options: [
       {
-        text: '*****',
-        icon: WebSVG,
+        text: 'Derivación ejecutiva web (CHATBOT)',
+        icon: '',
         link: ``,
       },
     ],
@@ -99,9 +99,9 @@ export const suggestionsObjNew = [
         link: 'https://www.hospitalclinico.cl/budget',
       },
       {
-        text: `Si usted desea resolver dudas sobre su presupuesto, llame al 2323951, o haga click aquí`,
+        text: `Si usted desea resolver dudas sobre su presupuesto llame al 322323951.`,
         icon: TelefonoSVG,
-        link: '2323951',
+        link: '',
       },
     ],
   },
@@ -118,7 +118,7 @@ export const suggestionsObjNew = [
             icon: DiagnosesSVG,
             options: [
               {
-                text: `El ingreso a Centro de Diagnóstico es por la calle Limache 1741 y se encuentra en el piso 1.`,
+                text: `El ingreso a Centro de Diagnóstico es por la calle Limache 1741 y se encuentra en el piso -1.`,
                 icon: '',
                 link: '',
               },
@@ -207,10 +207,10 @@ export const suggestionsObjNew = [
               {
                 text: `En el caso de salir positivo en el test de antígenos o la prueba PCR, debe
                 esperar al llamado del MINSAL o del consultorio más cercano a su domicilio, en caso de que no se
-                contacten con usted, debe comunicarse con 'Salud Responde'al te:56003607777 o hacer click aquí. Recuerde que no debe salir por
+                contacten con usted, debe comunicarse con 'Salud Responde'al te:56003607777. Recuerde que no debe salir por
                 ningún motivo de su domicilio. ¡Cuidarse es responsabilidad de todos!`,
                 icon: '',
-                link: `+56003607777`,
+                link: ``,
               },
             ],
           },
@@ -219,10 +219,10 @@ export const suggestionsObjNew = [
             icon: HorasMedPresSVG,
             options: [
               {
-                text: `Para agendar tu vacunación contra el COVID-19, debes llamar al 2323800 haciendo click aquí, o
+                text: `Para agendar tu vacunación contra el COVID-19, debes llamar al 322323800, o
                 contactarse por whatsapp al +56975878298 `,
                 icon: '',
-                link: `+56975878298`,
+                link: ``,
               },
             ],
           },
