@@ -1,5 +1,5 @@
 .chat-box__ewc-class {
-  height: 75%;
+  height: 19.125rem;
   width: 100%;
   background-color: $gray-10;
   margin-top: 0.4375rem;
@@ -7,9 +7,6 @@
   font-size: 0.75rem;
   font-family: 'Roboto', sans-serif;
   color: $gray-2;
-  border-bottom-left-radius: 2%;
-  border-bottom-right-radius: 2%;
-  box-shadow: 0rem 0.0625rem 0.5125rem 0rem rgba(0, 0, 0, 0.704);
   .dialogues-box__ewc-class {
     padding: 0.5rem;
     max-height: 100%;
@@ -20,60 +17,72 @@
     .bot-dialogue__ewc-class {
       display: flex;
       align-items: left;
-      width: 100%;
+      width: 70%;
       margin: 0.3125rem 0;
       margin-left: 0.3125rem;
       .bot-image-container__ewc-class {
-        word-wrap: break-word;
         .bot-image__ewc-class {
           width: 1.5625rem;
           height: 1.5625rem;
           border-radius: 1.6875rem;
-          // background-image: linear-gradient(140deg, $main 0%, $secondary 150%);
+          background-color: $main;
+          background-image: linear-gradient(140deg, $secondary 0%, $main 150%);
           margin-right: 0.3125rem;
-          // box-shadow: 0 0.0625rem 0.125rem 0.0625rem $gray-8;
-          // border: 0.0625rem solid $gray-9;
+          box-shadow: 0 0.0625rem 0.125rem 0.0625rem rgba($secondary, 0.5);
+          border: 0.0625rem solid $gray-9;
+        }
+        .agent-image__ewc-class {
+          box-shadow: 0 0.0625rem 0.125rem 0.0625rem rgba($main, 0.5);
+          width: 1.5625rem;
+          height: 1.5625rem;
+          border-radius: 1.6875rem;
+          background-color: $secondary;
+          margin-right: 0.3125rem;
+          background-image: linear-gradient(140deg, $main 0%, $secondary 150%);
+          border: 0.0625rem solid $gray-9;
+          color: $gray-10;
+          padding: 2px;
         }
       }
       .bot-text-container__ewc-class {
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
         color: $gray-9;
-        margin-bottom: 10px;
-        -ms-word-break: break-all;
-        // manejo del quiebre de palabras
-        word-break: break-all;
-        word-break: break-word;
-        -webkit-hyphens: auto;
-        -moz-hyphens: auto;
-        -ms-hyphens: auto;
-        hyphens: auto;
+        border: none;
         .bot-text__ewc-class {
-          font-weight: 400;
           position: relative;
           flex-direction: column;
           display: flex;
           align-items: center;
-          text-align: left;
           min-height: 1.875rem;
+          text-align: left;
           padding: 0.625rem;
           border-radius: 0.3125rem;
           border-top-left-radius: 0rem;
-          background-color: $main;
-          background-image: linear-gradient(160deg, $main 0%, $secondary 130%);
+          background-color: $secondary;
           max-width: 14.375rem;
           & > img {
             width: 100%;
             border-radius: 0.3125rem;
           }
-          & > a {
-            text-decoration: none;
-            color: $gray-9;
-            &:hover {
-              text-decoration: underline;
-            }
+        }
+        .agent-text__ewc-class {
+          position: relative;
+          flex-direction: column;
+          display: flex;
+          align-items: center;
+          min-height: 1.875rem;
+          text-align: left;
+          padding: 0.625rem;
+          border-radius: 0.3125rem;
+          border-top-left-radius: 0rem;
+          background-color: $main;
+          // background-image: linear-gradient(160deg, $main 0%, $secondary 130%);
+          max-width: 14.375rem;
+          & > img {
+            width: 100%;
+            border-radius: 0.3125rem;
           }
         }
       }
@@ -91,20 +100,11 @@
     .user-dialogue__ewc-class {
       display: flex;
       align-items: right;
-      width: 90%;
+      width: 70%;
       margin: 0.3125rem 0;
-      margin-left: 10%;
+      margin-left: 30%;
       justify-content: flex-end;
       .user-dialogue-container__ewc-class {
-        // Manejo quiebre de palabras
-        -ms-word-break: break-all;
-        word-break: break-all;
-        word-break: break-word;
-        -webkit-hyphens: auto;
-        -moz-hyphens: auto;
-        -ms-hyphens: auto;
-        hyphens: auto;
-
         position: relative;
         border: none;
         background-color: $gray-9;
@@ -114,12 +114,11 @@
         margin-right: 0.3125rem;
         padding: 0.625rem;
         display: flex;
-        // max-width: 14.375rem;
-        align-items: flex-end;
+        max-width: 14.375rem;
+        align-items: flex-start;
         justify-content: center;
-        // text-align: left;
-        // padding-left: 0.9375rem;
-        margin-bottom: 10px;
+        text-align: left;
+        padding-left: 0.9375rem;
         & img {
           width: 100%;
           border-radius: 0.3rem;
@@ -158,20 +157,12 @@
       text-align: right;
       margin-right: 0.625rem;
     }
-    .auto-time__ewc-class {
-      color: $gray-5;
-      font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      margin-bottom: 0.625rem;
-      font-size: 0.625rem;
-      text-align: left;
-      margin-left: 2.325rem;
-    }
   }
 }
 
 .chat-box-without-name-and-RUT__ewc-class {
   height: 24rem;
-  margin-top: 7px;
+  margin-top: 6px;
   width: 100%;
   border-bottom-left-radius: 0.9375rem;
   border-bottom-right-radius: 0.9375rem;
@@ -180,10 +171,10 @@
   font-family: 'Roboto', sans-serif;
   color: $gray-2;
   text-align: center;
-  outline: none;
+  // outline: none;
   .without-header__ewc-class {
     background-color: $gray-10;
-    height: 30%;
+    height: 30.2%;
     width: 100%;
     margin: 0 auto;
     color: $gray-4;
@@ -217,7 +208,7 @@
     .inp-control__ewc-class {
       width: 90%;
       height: 2.5rem;
-      border: 0.0625rem solid $gray-9;
+      border: 1px solid $gray-9;
       border-radius: 0.3125rem;
       padding-left: 0.625rem;
       color: $gray-3;
@@ -226,11 +217,12 @@
         padding-left: 0.3125rem;
       }
       &:focus {
-        outline: 0.125rem solid rgba($main, 0.7);
+        border: 0.125rem solid rgba($main, 0.7);
+        outline: none;
       }
     }
     .inp-control-error__ewc-class {
-      outline: 0.125rem solid $main-hover;
+      border: 0.125rem solid $main-hover;
     }
     .error-message__ewc-class {
       color: $main;
@@ -249,20 +241,35 @@
       color: $gray-9;
       font-weight: 700;
       font-size: 0.875rem;
-      border-radius: 0.3125rem;
       cursor: pointer;
       margin-top: 0rem;
       background-image: linear-gradient(165deg, $main 0%, $secondary 70%);
       background-size: 200% 100%;
+      display: inline-block;
+      border: none;
+      border-radius: 0.3125rem;
+      transition: all 0.2s ease-in-out;
       &:hover {
-        transition: all 0.5 ease-in-out;
-        background-position: 70% 0;
-        -o-transition: all 0.5s ease-in-out;
-        -webkit-transition: all 0.5s ease-in-out;
-        background-color: $main;
+        animation: gradient 3s infinite;
+        transform: scale(1.01);
       }
       &:active {
-        background-color: $main;
+        animation: gradient 3s infinite;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
       }
     }
   }
@@ -373,133 +380,5 @@
         fill: $gray-5;
       }
     }
-  }
-}
-
-.bot-svg-and-icon__ewc-class {
-  width: 1.7625rem;
-  height: 1.7625rem;
-  border-radius: 50%;
-  & > div {
-    width: 1.7625rem;
-    height: 1.7625rem;
-    border-radius: 50%;
-    background-color: $main;
-    width: 1.5625rem;
-    height: 1.5625rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    // box-shadow: 0 0rem 0.125rem rgba($gray-1, 0.9);
-    // border: 1px solid $gray-10;
-    // outline: 1px solid $gray-7;
-    & > svg {
-      height: 15px;
-      width: 15px;
-      fill: white;
-      color: $main;
-    }
-  }
-}
-
-.automatized-text-container__ewc-class {
-  display: flex;
-  // border: 1px solid gray;
-  width: 100%;
-  padding: 0 0px;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  margin-top: 10px;
-  .automatized-text__ewc-class {
-    transition: all 0.2s ease-in-out;
-    background-image: linear-gradient(140deg, $main 0%, $secondary 180%);
-    color: $gray-10;
-    border: none;
-    border-radius: 17px;
-    box-shadow: 0rem 0.0625rem 0.2525rem 0rem rgba(0, 0, 0, 0.998);
-    font-weight: 500;
-    font-size: 12px;
-    padding: 0 10px;
-    margin: 3px 5px;
-    height: 30px;
-    width: fit-content;
-    max-width: 100%;
-    outline: 2px solid $gray-10;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    &:hover {
-      transition: all 0.2s ease-in-out;
-      cursor: pointer;
-      background-image: linear-gradient(140deg, $main 0%, $main 180%);
-      box-shadow: 0rem 0.0625rem 0.6rem 0rem $main;
-    }
-    & > div {
-      height: 24px;
-      width: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 7px;
-      padding-top: 4px;
-      & svg {
-        fill: transparent;
-        height: 20px;
-        & path {
-          & * {
-            background: white;
-            stroke: white;
-          }
-        }
-      }
-    }
-  }
-}
-
-.spinner-before-suggestions__ewc-class {
-  // background-color: $main;
-  color: black;
-  // border: 1px solid black;
-  width: 100px;
-  height: 100px;
-  padding-left: 4px;
-}
-
-.automatized-text-back__ewc-class {
-  transition: all 0.2s ease-in-out;
-  background-image: linear-gradient(140deg, $secondary 0%, $main 180%);
-  // background-color: $secondary;
-  color: $gray-10;
-  border: none;
-  border-radius: 17px;
-  box-shadow: 0rem 0.0625rem 0.2525rem 0rem rgba(0, 0, 0, 0.998);
-  font-weight: 500;
-  font-size: 12px;
-  padding: 0 8px;
-  padding-right: 12px;
-  margin-left: 15px;
-  margin: 3px 5px;
-  height: 30px;
-  width: fit-content;
-  max-width: 100%;
-  outline: 2px solid $gray-10;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  &:hover {
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-    background-image: linear-gradient(140deg, $secondary 0%, $secondary 180%);
-    // box-shadow: 0rem 0.0625rem 0.6rem 0rem $main;
-  }
-
-  & svg {
-    padding-top: 1px;
-    margin-right: 7px;
-    height: 24px;
-    width: 24px;
   }
 }

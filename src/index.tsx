@@ -1,5 +1,5 @@
-import React from 'react';
+import * as React from 'react';
 import { render } from 'react-dom';
 import App from './components/app';
 
-render(<App />, document.getElementById('root'));
+render(<App />, document.getElementById('webchat-elipse-chat'));

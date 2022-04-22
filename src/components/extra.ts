@@ -1,3 +1,5 @@
+import { ContentTypes, DERIVATIONS, MessageFrom } from './shared';
+
 import WebSVG from '../assets/vina/web.svg';
 import HorasMedPresSVG from '../assets/vina/horas-med-pres.svg';
 import TelefonoSVG from '../assets/vina/telefono.svg';
@@ -15,16 +17,14 @@ import AdmisionSVG from '../assets/vina/admision.svg';
 import MedicalSVG from '../assets/vina/medical.svg';
 import LabSVG from '../assets/vina/lab.svg';
 import QuestionSVG from '../assets/vina/question.svg';
+import Support from '../assets/vina/support-agente.svg';
 
 export const initialMessage = [
   {
-    _id: '0',
-    contentType: 'TEXT',
-    from: 'AGENT',
+    contentType: ContentTypes.TEXT,
+    from: MessageFrom.BOT,
     content: `¡Hola, estoy aquí para apoyarte en los servicios de HCVM!
       ¿En qué puedo ayudarte?`,
-    icon: '',
-    link: '',
   },
 ];
 
@@ -34,7 +34,7 @@ export const suggestionsObjNew = [
     icon: HorasMedPresSVG,
     subItems: [
       {
-        name: 'Agendamiento hora presencial',
+        name: 'Agendamiento presencial',
         icon: HorasMedPresSVG,
         options: [
           {
@@ -43,9 +43,9 @@ export const suggestionsObjNew = [
             link: 'https://agenda.hospitalclinico.cl/',
           },
           {
-            text: `Derivación ejecutiva web (CHATBOT)`,
-            icon: '',
-            link: '',
+            text: `Comunicarme con un Agente de servicio médico para agendar una hora presencial`,
+            icon: Support,
+            link: DERIVATIONS.AGENT,
           },
         ],
       },
@@ -59,9 +59,9 @@ export const suggestionsObjNew = [
             link: `https://app.tuotempo.com/mop/index.php?dbName=tt_hospital_clinico_vm&amp;mopIframeReturnPage=https://www.hospitalclinico.cl/#search/query/%26`,
           },
           {
-            text: `Si desea hablar directamente con nuestra ejecutiva de telemedicina, háblenos por whatsapp al +56952393656`,
+            text: `Si desea hablar con nuestra ejecutiva de telemedicina, comuníquese al +56952393656, o haga click aquí para comunicarse por Whatsapp`,
             icon: '',
-            link: '',
+            link: ' https://wa.me/+56952393656',
           },
         ],
       },
@@ -70,9 +70,9 @@ export const suggestionsObjNew = [
         icon: ServImagenesSVG,
         options: [
           {
-            text: 'Derivación ejecutiva web (CHATBOT)',
-            icon: '',
-            link: ``,
+            text: `Comunicarme con un Agente de servicio médico para agendar un exámen`,
+            icon: Support,
+            link: DERIVATIONS.AGENT,
           },
         ],
       },
@@ -83,9 +83,9 @@ export const suggestionsObjNew = [
     icon: PrepExamSVG,
     options: [
       {
-        text: 'Derivación ejecutiva web (CHATBOT)',
-        icon: '',
-        link: ``,
+        text: `Comunicarme con un Agente de preparación de exámenes`,
+        icon: Support,
+        link: DERIVATIONS.AGENT,
       },
     ],
   },
@@ -219,10 +219,10 @@ export const suggestionsObjNew = [
             icon: HorasMedPresSVG,
             options: [
               {
-                text: `Para agendar tu vacunación contra el COVID-19, debes llamar al 322323800, o
-                contactarse por whatsapp al +56975878298 `,
+                text: `Para agendar tu vacunación contra el COVID-19 debe llamar al 322323800,
+                contactarse por whatsapp al +56975878298 o haciendo click aquí`,
                 icon: '',
-                link: ``,
+                link: `https://wa.me/+56975878298`,
               },
             ],
           },

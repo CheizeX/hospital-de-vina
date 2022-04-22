@@ -32,11 +32,20 @@ export enum StatusAgent {
   BATHROOM = 'BATHROOM',
   LUNCH = 'LUNCH',
 }
+export enum ContentTypes {
+  TEXT = 'TEXT',
+  ATTACHMENT = 'ATTACHMENT',
+}
 export type Tag = {
   _id?: string;
   name: string;
   color: string;
 };
+export enum MessageFrom {
+  AGENT = 'AGENT',
+  USER = 'USER',
+  BOT = 'Bot',
+}
 
 export type User = {
   _id: string;
@@ -69,6 +78,7 @@ export type Message = {
   isDeleted?: boolean;
   icon?: string;
   link?: string;
+  derivation?: string;
 };
 
 export type Chat = {
@@ -101,11 +111,35 @@ export interface SubItemsSuggestionsProps {
   link?: string;
   text?: string;
 }
+export enum DERIVATIONS {
+  AGENT = 'agent',
+  FORM = 'form',
+  LINK = 'link',
+}
+export enum FormTypes {
+  TEXT = 'text',
+  DATE = 'date',
+  TEXTAREA = 'textarea',
+  NUMBER = 'number',
+  PASSWORD = 'password',
+  // EMAIL = 'email',
+  TEL = 'tel',
+}
+export interface FormProps {
+  name: string;
+  type: FormTypes;
+  placeholder?: string;
+  value?: string;
+}
 export interface SuggestionsProps {
   icon?: string;
   name?: string;
   options?: OptionsSuggestionsProps[];
   subItems?: SubItemsSuggestionsProps[];
+  question?: string;
+  derivation?: DERIVATIONS;
+  derivationLink?: string;
+  derivationForm?: FormProps[];
 }
 
 // TIME AGO --------------

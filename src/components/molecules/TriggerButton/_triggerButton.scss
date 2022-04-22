@@ -11,12 +11,25 @@
   width: 3.125rem;
   position: absolute;
   bottom: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(140deg, $main 0%, $secondary 150%);
   right: 1.25rem;
-  border: none;
-  // box-shadow: 0rem 0.125rem 0.3125rem 0.125rem rgba(0, 0, 0, 0.185);
+  border: 2px solid $main;
+  box-shadow: 0rem 0.125rem 0.3125rem 0.125rem rgba(0, 0, 0, 0.185);
   &:hover {
-    box-shadow: 0rem 0rem 0.3125rem 0.0625rem $secondary;
+    box-shadow: 0rem 0rem 0.3125rem 0.0625rem $main;
     cursor: pointer;
+  }
+
+  & img {
+    border-radius: 50%;
+    border: none;
+    height: 3.125rem;
+    width: 3.125rem;
+    width: 100%;
+    height: 100%;
   }
   .trigger-avatar__ewc-class {
     overflow: hidden;
@@ -24,7 +37,12 @@
     border-radius: 50%;
     width: 100%;
     height: 100%;
-    background: transparent;
+    background: linear-gradient(140deg, $main 0%, $secondary 150%);
   }
   overflow: hidden;
+}
+.assistant-trigger__ewc-class {
+  color: $gray-9;
+  width: 2rem;
+  height: 2rem;
 }

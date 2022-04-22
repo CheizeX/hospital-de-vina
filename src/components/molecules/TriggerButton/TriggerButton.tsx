@@ -1,25 +1,29 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { FC } from 'react';
-import RobotAvatar from '../../../assets/vina/logo.png';
-
-import UserSVG from '../../../assets/user.svg';
-import { webchatProps } from '../../WebChat/Webchat';
+import { MdOutlineSupportAgent } from 'react-icons/md';
+import { webchatProps } from '../../WebChat/webchat.interface';
+import logo from '../../../assets/vina/logo.png';
 
 export const TriggerButton: FC<webchatProps> = function ({
   handleCollapse,
   isCollapsed,
   agentName,
+  base64Avatar,
 }) {
   return (
     <button
       type="button"
       className={!isCollapsed ? 'button-trigger__ewc-class' : 'hidden'}
       onClick={handleCollapse}>
-      <img
-        className="trigger-avatar__ewc-class"
-        src={agentName === '' ? RobotAvatar : UserSVG}
-        alt=""
-      />
+      {agentName === '' ? (
+        <img
+          src={logo || `data:image/svg+xml;base64,${base64Avatar}`}
+          className="avatar__ewc-class"
+          alt="avatar"
+        />
+      ) : (
+        <MdOutlineSupportAgent className="assistant-trigger__ewc-class" />
+      )}
     </button>
   );
 };

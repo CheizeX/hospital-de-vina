@@ -1,16 +1,23 @@
 import React, { FC, useCallback, useState } from 'react';
 import * as yup from 'yup';
-import { webchatProps } from '../../WebChat/Webchat';
+import { Message } from '../../shared';
+import { webchatProps } from '../../WebChat/webchat.interface';
 
-export const ChatBoxForm: FC<webchatProps> = function ({
+interface BotBoxProps {
+  automatedMessages: Message[];
+  formFieldsAndAutomatedMessages: Message[];
+  handleSendMessage: (arg?: Message[]) => void;
+}
+
+export const ChatBoxForm: FC<webchatProps & BotBoxProps> = function ({
+  automatedMessages,
   name,
-  // outOfHour,
   email,
+  handleSendMessage,
   setSetingNameAndEmail,
-  // validateBusinessTime,
-  // setOutOfHourWarning,
   setName,
   setEmail,
+  formFieldsAndAutomatedMessages,
 }) {
   const [validationErrors, setValidationErrors] = useState('');
 
@@ -41,13 +48,17 @@ export const ChatBoxForm: FC<webchatProps> = function ({
     }
   }, [email, name, validationSchema, setSetingNameAndEmail]);
 
-  const handleSendButton = () => {
-    handleSetNameAndEmailOnStorage();
+  const handleSendButton = async () => {
     // validateBusinessTime();
-    // if (outOfHour) {
-    //   setOutOfHourWarning(true);
-    //   return;
-    // }
+
+    await handleSetNameAndEmailOnStorage();
+    if (!sessionStorage.getItem('chatId')) {
+      if (formFieldsAndAutomatedMessages.length === 0) {
+        handleSendMessage(automatedMessages);
+      } else {
+        handleSendMessage(formFieldsAndAutomatedMessages);
+      }
+    }
   };
 
   const handleLocaleStorageName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,6 +86,7 @@ export const ChatBoxForm: FC<webchatProps> = function ({
               ? 'inp-control__ewc-class inp-control-error__ewc-class'
               : 'inp-control__ewc-class'
           }
+          value={name}
           placeholder="Nombre Completo"
           onChange={handleLocaleStorageName}
         />
@@ -85,16 +97,17 @@ export const ChatBoxForm: FC<webchatProps> = function ({
               ? 'inp-control__ewc-class  inp-control-error__ewc-class '
               : 'inp-control__ewc-class '
           }
+          value={email}
           placeholder="Email"
           onChange={handleLocaleStorageEmail}
         />
         <p className="error-message__ewc-class">{validationErrors}</p>
-        <input
+        <button
           type="button"
           className="but-control__ewc-class"
-          value="ENVIAR"
-          onClick={handleSendButton}
-        />
+          onClick={handleSendButton}>
+          ENVIAR
+        </button>
       </form>
     </div>
   );
