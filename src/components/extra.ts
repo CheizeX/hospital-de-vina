@@ -234,8 +234,8 @@ export const suggestionsObjNew = [
         options: [
           {
             text: 'Para cualquier otra duda, por favor comuníquese con nuestras ejecutivas al',
-            icon: TelefonoSVG,
-            link: '',
+            icon: Support,
+            link: DERIVATIONS.AGENT,
           },
         ],
       },
